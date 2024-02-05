@@ -14,14 +14,14 @@ public class ListaEventosPanel extends JPanel {
 	 */
 	public ListaEventosPanel() {
 		setLayout(null);
-		
+
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(10, 11, 452, 271);
 		add(scrollPane);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
 	}
-	
+
 }

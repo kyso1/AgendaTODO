@@ -4,8 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
+import javax.swing.border.EmptyBorder;
 
 public class AgendaFrame extends JFrame {
 
@@ -41,13 +41,17 @@ public class AgendaFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(10, 11, 479, 262);
 		ListaEventosPanel listaEventosPanel = new ListaEventosPanel();
 		CadastroEventoPanel cadastroEventoPanel = new CadastroEventoPanel();
+		FinanceiroPanel financeiroPanel = new FinanceiroPanel();
+		FinanceiroInfo financeiroInfo = new FinanceiroInfo();
 		tabbedPane.addTab("Cadastro de Eventos", cadastroEventoPanel);
 		tabbedPane.addTab("Lista de Eventos", listaEventosPanel);
+		tabbedPane.addTab("Cadastro Financeiro", financeiroPanel);
+		tabbedPane.addTab("Informações Financeiro", financeiroInfo);
 		contentPane.add(tabbedPane);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
