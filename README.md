@@ -6,7 +6,9 @@
 ### UI:
   - Arrumar a lista de eventos
   - Adiconar painel de controle financeiro
-      * ~~Quanto de salário ainda resta~~
+      * Quanto de salário ainda resta
+          - ~~Criar UI~~
+          - Implementar lógica
       * Média de gasto
           - Implementar lógica
       * Dividas feitas
