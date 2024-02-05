@@ -12,6 +12,7 @@
       * Média de gasto
           - Implementar lógica
       * Dividas feitas
+      * Adicionar uma CheckBox com opção de acrescentar e nomear alguma conta
       * ...
   - Atualizar o painel de eventos e adicionar outras funcionalidades propostas
       * Eventos definitivos. Exemplo aniversários ou datas comemorativas
@@ -24,4 +25,5 @@
 ### Banco:
   - Criar código de implementação com a UI
   - Criar as tables dentro do Postgre
+  - Gerar requests, insert, delete
   - ...
