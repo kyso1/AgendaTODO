@@ -11,7 +11,7 @@ public class ConnectDB {
 	private String password;
 	private Connection con;
 
-    public ConnectDB(float salario, float luz, float agua, float any, float aluguel) throws SQLException, ClassNotFoundException {
+    public ConnectDB() throws SQLException, ClassNotFoundException {
 
         databaseURL = "jdbc:postgresql://localhost:5432/aulaBD";
 		user = "postgres";
@@ -28,8 +28,8 @@ public class ConnectDB {
 		this.con = con;
 	}
 
-    public void inserir() throws SQLException {	
-		String sqlinsert = "INSERT INTO dadosFinanceiros VALUES ('"+salario+"','"+luz+"'','"+agua+"','"+aluguel+"','"+any+"'")";
+    public void inserir(float salario, float luz, float agua, float any, float aluguel) throws SQLException {	
+		String sqlinsert = "INSERT INTO dadosFinanceiros VALUES ('"+salario+"','"+luz+"'','"+agua+"','"+aluguel+"','"+any+"')";
 		Statement stmt = con.createStatement();
 		stmt.executeUpdate(sqlinsert);
 	}
