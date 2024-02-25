@@ -24,6 +24,6 @@
 
 ### Banco:
   - Criar código de implementação com a UI
-  - Criar as tables dentro do Postgre
+  - ~~Criar as tables dentro do Postgre~~
   - Gerar requests, insert, delete
   - ...
