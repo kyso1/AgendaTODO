@@ -2,6 +2,10 @@ package Agenda.gui;
 
 import java.awt.Font;
 import java.awt.Point;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.sql.SQLException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -11,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import Agenda.database.eventsDB;
 
 public class CadastroEventoPanel extends JPanel {
 
@@ -22,74 +28,87 @@ public class CadastroEventoPanel extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public CadastroEventoPanel() {
+	public CadastroEventoPanel() throws ClassNotFoundException, SQLException {
 		setLayout(null);
 
 		tfDescEvento = new JTextField();
-		tfDescEvento.setSize(403, 20);
+		tfDescEvento.setSize(403, 124);
 		tfDescEvento.setLocation(new Point(10, 36));
 		add(tfDescEvento);
 		tfDescEvento.setColumns(10);
 
-		JLabel lblDescEvento = new JLabel("Descrição do Evento");
+		JLabel lblDescEvento = new JLabel("Descrição do Evento:");
 		lblDescEvento.setBounds(10, 11, 114, 14);
 		lblDescEvento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblDescEvento);
 
-		JLabel lblDataEvento = new JLabel("Data do Evento");
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setBounds(226, 266, 89, 23);
+		add(btnSalvar);
+		btnSalvar.setEnabled(false);
+
+		JLabel lblDataEvento = new JLabel("Data do Evento:");
 		lblDataEvento.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblDataEvento.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDataEvento.setBounds(10, 67, 114, 14);
+		lblDataEvento.setBounds(10, 171, 114, 14);
 		add(lblDataEvento);
 
 		tfDataEvento = new JTextField();
-		tfDataEvento.setBounds(134, 61, 120, 20);
+		tfDataEvento.setBounds(104, 168, 120, 20);
 		add(tfDataEvento);
 		tfDataEvento.setColumns(10);
+		
+		//arrumar essa porra que ta dando erro de conversão por algum motivo
+		
+		String[] dataRaw = tfDataEvento.toString().split("/");
+		int[] dataFormatada = new int[3];
+		for(int i= 0; i<3;i++) {
+			dataFormatada[i] = Integer.parseInt(dataRaw[i]);
+		}
+		int data[] = new int[3];
+		for(int i=0;i<3;i++) {
+			data[i] =dataFormatada[i];
+		}
 
-		JLabel lblEncaminharEmail = new JLabel("Encaminhar E-mail");
-		lblEncaminharEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEncaminharEmail.setBounds(10, 92, 114, 14);
-		add(lblEncaminharEmail);
-
-		tfEncaminharEmail = new JTextField();
-		tfEncaminharEmail.setBounds(134, 89, 200, 20);
-		add(tfEncaminharEmail);
-		tfEncaminharEmail.setColumns(10);
-
-		JRadioButton rdbUmavez = new JRadioButton("Uma vez");
-		buttonGroup.add(rdbUmavez);
-		rdbUmavez.setBounds(158, 116, 67, 23);
-		add(rdbUmavez);
-
-		JLabel lblPeriodicidadeEvento = new JLabel("Periodicidade do Evento");
-		lblPeriodicidadeEvento.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPeriodicidadeEvento.setBounds(10, 120, 142, 14);
-		add(lblPeriodicidadeEvento);
-
-		JRadioButton rdbSemanal = new JRadioButton("Semanal");
-		buttonGroup.add(rdbSemanal);
-		rdbSemanal.setBounds(227, 116, 67, 23);
-		add(rdbSemanal);
-
-		JRadioButton rdbMensal = new JRadioButton("Mensal");
-		buttonGroup.add(rdbMensal);
-		rdbMensal.setBounds(296, 116, 67, 23);
-		add(rdbMensal);
-
-		JCheckBox ckbAlarme = new JCheckBox("Alarme");
-		ckbAlarme.setFont(new Font("Tahoma", Font.BOLD, 11));
-		ckbAlarme.setBounds(10, 141, 97, 23);
-		add(ckbAlarme);
-
-		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(134, 141, 89, 23);
-		add(btnSalvar);
+		eventsDB eventsDB = new eventsDB();
+		eventsDB.inserirEvento(data[0],data[1],data[2],tfDescEvento.getText());
 
 		JButton btnLimpar = new JButton("Limpar");
-		btnLimpar.setBounds(245, 141, 89, 23);
+		btnLimpar.setBounds(324, 266, 89, 23);
 		add(btnLimpar);
+		btnLimpar.setEnabled(false);
 
+		tfDataEvento.addFocusListener((FocusListener) new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(dataRaw[0]!=null) {
+					btnSalvar.setEnabled(true);
+				}else {
+					btnSalvar.setEnabled(false);
+				}
+				try {
+					if(eventsDB.getEvento() != tfDataEvento.getText()) {
+						btnLimpar.setEnabled(true);
+						JLabel lblDiaCheio = new JLabel("Você já possui evento neste dia!");
+						lblDiaCheio.setBounds(104, 196, 188, 14);
+						add(lblDiaCheio);
+					}else {
+						JLabel lblDiaCheio = new JLabel("Você não possui evento neste dia!");
+						lblDiaCheio.setBounds(104, 196, 188, 14);
+						add(lblDiaCheio);
+					}
+				}catch(Exception e1) {
+					System.out.println("Erro: " + e1 );
+				}
+			}
+		});
+
+		JLabel ajuda = new JLabel("Exemplo: 01/01/2001");
+		ajuda.setBounds(234, 171, 131, 14);
+		add(ajuda);
+	
 	}
 }

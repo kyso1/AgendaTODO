@@ -22,7 +22,7 @@ public class BtnCalendario extends JButton{
 	public BtnCalendario() {
 		setContentAreaFilled(false);
 		setBorder(null);
-		setHorizontalAlignment(JLabel.CENTER);
+		setHorizontalAlignment(JLabel.CENTER );
 		addActionListener((ActionListener) new ActionListener() {
 
 			@Override
