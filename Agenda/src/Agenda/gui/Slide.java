@@ -5,11 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import javax.swing.Timer;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 
-public class Slide extends javax.swing.JPanel {
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+public class Slide extends JPanel {
 
     /**
 	 * 
@@ -25,7 +25,6 @@ public class Slide extends javax.swing.JPanel {
     }
 
     public Slide() {
-        initComponents();
         setLayout(null);
         setLayout(null);
         addComponentListener(new ComponentAdapter() {
@@ -48,7 +47,7 @@ public class Slide extends javax.swing.JPanel {
     private Component comExit;
     private Component comShow;
     private AnimateType animateType;
-    private int animate = 1;
+    private int animate = 15;
 
     public void show(Component com, AnimateType animateType) {
         if (!timer.isRunning()) {
@@ -71,7 +70,6 @@ public class Slide extends javax.swing.JPanel {
                 repaint();
                 revalidate();
                 timer.start();
-
             }
         }
     }
@@ -101,14 +99,7 @@ public class Slide extends javax.swing.JPanel {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-    }// </editor-fold>//GEN-END:initComponents
-
     public static enum AnimateType {
         TO_RIGHT, TO_LEFT
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
 }

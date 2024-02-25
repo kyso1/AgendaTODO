@@ -1,16 +1,15 @@
 package Agenda.gui;
 
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.util.Calendar;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import Agenda.utils.BtnCalendario;
 import java.awt.Color;
 import java.awt.Component;
 
-public class TesteGridLayoutGui extends JPanel {
+public class TesteGridLayoutGui extends JLayeredPane {
 
 	private static final long serialVersionUID = 1L;
 
@@ -228,16 +227,16 @@ public class TesteGridLayoutGui extends JPanel {
 		btnCalSex.iniTitulo();
 		btnCalSab.iniTitulo();
 		btnCalDom.iniTitulo();
-		setData(ano, mes);
+		setData();
 		
 	}
 	
 	//função para fazer os botões do calendario ter os numeros dos dias
-	private void setData(int ano, int mes) {
+	private void setData() {
 		Calendar calendario = Calendar.getInstance();
 		calendario.set(Calendar.YEAR, ano);
 		System.out.println("Ano recebido: " + ano + "  ano no CALENDAR " + calendario.get(Calendar.YEAR));
-		calendario.set(Calendar.MONTH, mes - 1); //mes de janeiro considerado como 0
+		calendario.set(Calendar.MONTH, mes); //mes de janeiro considerado como 0
 		System.out.println("Mes recebedo: " + mes + "  mes no CALENDAR " + calendario.get(Calendar.MONTH));
 		calendario.set(Calendar.DATE, 1);
 		System.out.println(calendario.get(Calendar.DATE));
@@ -248,7 +247,7 @@ public class TesteGridLayoutGui extends JPanel {
 			if(!btn.getTitulo()) {
 				btn.setText(calendario.get(Calendar.DATE) + "");
 				btn.setData(calendario.getTime());
-				btn.mesAtual(calendario.get(Calendar.MONTH) == mes - 1);
+				btn.mesAtual(calendario.get(Calendar.MONTH) == mes);
 				calendario.add(Calendar.DATE, 1); //acrescenta um dia
 			}
 		}
