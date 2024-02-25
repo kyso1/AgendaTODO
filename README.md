@@ -1,6 +1,6 @@
 # Repositório do trabalho da matéria 'Programação Orientada a Objetos'
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O trabalho está sendo realizado na linguagem Java, e tem como objetivo a criação de um programa que demonstre uma agenda de afazeres diários, além também de ter métodos para controle financeiro como por exemplo a soma do salário adquirido no mês e o desconto aplicado à ele com as dividas do dia a dia.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O trabalho está sendo realizado na linguagem Java, e tem como objetivo a criação de um programa que demonstre uma agenda de afazeres diários, além também de ter métodos para controle financeiro como por exemplo a soma do salário adquirido no mês e o desconto aplicado a ele com as dividas do dia a dia.
 
 ## O que ainda precisa ser feito...
 ### UI:
