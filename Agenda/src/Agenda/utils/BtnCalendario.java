@@ -4,6 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 
 public class BtnCalendario extends JButton{
@@ -21,6 +23,14 @@ public class BtnCalendario extends JButton{
 		setContentAreaFilled(false);
 		setBorder(null);
 		setHorizontalAlignment(JLabel.CENTER);
+		addActionListener((ActionListener) new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("oi " + data); 
+			}
+			
+		});
 	}
 	
 	public void iniTitulo() {

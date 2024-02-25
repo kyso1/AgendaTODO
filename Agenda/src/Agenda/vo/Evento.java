@@ -19,8 +19,7 @@ public class Evento implements Serializable {
 		super();
 	}
 
-	public Evento(Date dataEvento, String descEvento, PeriodicidadeEnum periodicidade, String emailEncaminhar,
-			int alarme) {
+	public Evento(Date dataEvento, String descEvento, PeriodicidadeEnum periodicidade, String emailEncaminhar, int alarme) {
 		super();
 		this.dataEvento = dataEvento;
 		this.descEvento = descEvento;
