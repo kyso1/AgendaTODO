@@ -11,9 +11,9 @@
       * ~~Média de gasto~~
           - ~~Implementar lógica~~
       * ~~Dividas feitas~~
-  - Refatorar o código
-  - Colocar painel que abre clicando no calendario
-  - Arrumar fonte do textbox de "Salário", ta com fonte diferente das outras
+  - ~~Refatorar o código~~
+  - ~~Colocar painel que abre clicando no calendario~~
+  - ~~Arrumar fonte do textbox de "Salário", ta com fonte diferente das outras~~
   - ...
 
 ---
