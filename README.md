@@ -4,14 +4,15 @@
 
 ## O que ainda precisa ser feito...
 ### UI:
-  - Adiconar painel de controle financeiro
-      * Quanto de salário ainda resta
+  - ~~Adiconar painel de controle financeiro~~
+      * ~~Quanto de salário ainda resta~~
           - ~~Criar UI~~
           - ~~Implementar lógica~~
-      * Média de gasto
+      * ~~Média de gasto~~
           - ~~Implementar lógica~~
       * ~~Dividas feitas~~
   - Refatorar o código
+  - Colocar painel que abre clicando no calendario
   - ...
 
 ---
@@ -19,7 +20,8 @@
 ### Banco:
   - ~~Criar código de implementação com a UI~~
   - ~~Criar as tables dentro do Postgre~~
-  - ~~Gerar requests, insert, delete~~ 
+  - ~~Gerar requests, insert, delete~~
+  - Arrumar método de atualizar valor financeiro
   - ...
 ### TODO:
-  - Arrumar conversão de String para INT ARRAY 
+  - ~~Arrumar conversão de String para INT ARRAY~~ 
