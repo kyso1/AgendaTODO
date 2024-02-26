@@ -16,7 +16,7 @@ public class saveDB {
 	private Connection con;
 	
 	public saveDB() throws ClassNotFoundException, SQLException{
-		databaseURL = "jdbc:postgresql://localhost:5432/postgres";
+		databaseURL = "jdbc:postgresql://localhost:5432/aulaBD";
 		user = "postgres";
 		password = "postgres";
 		Class.forName("org.postgresql.Driver");

@@ -17,9 +17,6 @@ import Agenda.database.saveDB;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-
 public class FinanceiroPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -224,8 +221,8 @@ public class FinanceiroPanel extends JPanel {
 		});
 		
 		
-		if(rdbtnSal.isSelected() || rdbtnLuz.isSelected() || rdbtnAgua.isSelected() || rdbtnAluguel.isSelected()) {
-			btnAtt.setEnabled(true);
+		/*if(rdbtnSal.isSelected() || rdbtnLuz.isSelected() || rdbtnAgua.isSelected() || rdbtnAluguel.isSelected()) {
+			btnAtt.setEnabled(false);
 			if(rdbtnSal.isSelected()) {
 				saveDB.update(1,Float.parseFloat(tfSalario.getText()));
 			}else if(rdbtnLuz.isSelected()) {
@@ -235,7 +232,71 @@ public class FinanceiroPanel extends JPanel {
 			}else if(rdbtnAluguel.isSelected()) {
 				saveDB.update(4,Float.parseFloat(tfAluguel.getText()));
 			}
-		}
+		}*/
+		
+		btnAtt.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(rdbtnSal.isSelected() || rdbtnLuz.isSelected() || rdbtnAgua.isSelected() || rdbtnAluguel.isSelected()) {
+					btnAtt.setEnabled(false);
+					if(rdbtnSal.isSelected()) {
+						try {
+							saveDB.update(1,Float.parseFloat(tfSalario.getText()));
+						} catch (NumberFormatException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}else if(rdbtnLuz.isSelected()) {
+						try {
+							saveDB.update(2,Float.parseFloat(tfLuz.getText()));
+						} catch (NumberFormatException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}else if(rdbtnAgua.isSelected()){
+						try {
+							saveDB.update(3,Float.parseFloat(tfAgua.getText()));
+						} catch (NumberFormatException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}else if(rdbtnAluguel.isSelected()) {
+						try {
+							saveDB.update(4,Float.parseFloat(tfAluguel.getText()));
+						} catch (NumberFormatException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+			}
+			
+		});
 		
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -262,7 +323,7 @@ public class FinanceiroPanel extends JPanel {
 						e1.printStackTrace();
 					}
 				}else if(conta == "Aluguel") {
-					saveDB.setID(3);
+					saveDB.setID(4);
 					try {
 						saveDB.deletar();
 					} catch (SQLException | ClassNotFoundException e1) {
