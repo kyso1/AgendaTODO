@@ -3,6 +3,8 @@ package Agenda.gui;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Calendar;
 
 import Agenda.utils.BtnCalendario;
@@ -15,6 +17,7 @@ public class TesteGridLayoutGui extends JLayeredPane {
 
 	private int mes;
 	private int ano;
+	public String teste = "testando";
 	
 	public TesteGridLayoutGui(int mes, int ano) {
 		setLayout(new GridLayout(7, 7, 0, 0));
@@ -214,6 +217,14 @@ public class TesteGridLayoutGui extends JLayeredPane {
 		
 		BtnCalendario btnclndrCedula_48 = new BtnCalendario();
 		btnclndrCedula_48.setText("");
+		btnclndrCedula_48.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(btnclndrCedula_48.getDataExtenso());
+			}
+			
+		});
 		add(btnclndrCedula_48);
 
 		this.mes = mes;
@@ -247,6 +258,8 @@ public class TesteGridLayoutGui extends JLayeredPane {
 			if(!btn.getTitulo()) {
 				btn.setText(calendario.get(Calendar.DATE) + "");
 				btn.setData(calendario.getTime());
+				//System.out.println("" + calendario.get(Calendar.DATE) + "/" + (calendario.get(Calendar.MONTH) + 1) + "/" + calendario.get(Calendar.YEAR));
+				btn.setDataExtenso("" + calendario.get(Calendar.DATE) + "/" + (calendario.get(Calendar.MONTH) + 1) + "/" + calendario.get(Calendar.YEAR));
 				btn.mesAtual(calendario.get(Calendar.MONTH) == mes);
 				calendario.add(Calendar.DATE, 1); //acrescenta um dia
 			}

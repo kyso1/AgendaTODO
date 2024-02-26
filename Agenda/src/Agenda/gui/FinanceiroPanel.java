@@ -41,7 +41,6 @@ public class FinanceiroPanel extends JPanel {
 		add(lblSalario);
 		
 		tfSalario = new JTextField();
-		tfSalario.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		tfSalario.setBounds(265, 8, 96, 19);
 		add(tfSalario);
 		tfSalario.setColumns(10);

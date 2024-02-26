@@ -13,6 +13,19 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+
+import Agenda.utils.BtnCalendario;
+
+import java.awt.CardLayout;
+import java.awt.Component;
 
 public class Calendario extends JPanel {
 
@@ -27,6 +40,7 @@ public class Calendario extends JPanel {
 	private int ano;
 	public JLabel lblMesAno = new JLabel("Mes - Ano");
 	public Slide slide = new Slide();
+	public TesteGridLayoutGui atual;
 	
 	public Calendario() {
 		setMesAnoAtual();
@@ -34,7 +48,7 @@ public class Calendario extends JPanel {
 		springLayout.putConstraint(SpringLayout.NORTH, slide, 6, SpringLayout.SOUTH, lblMesAno);
 		springLayout.putConstraint(SpringLayout.WEST, slide, 10, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, slide, -10, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, slide, -10, SpringLayout.EAST, this);
+		springLayout.putConstraint(SpringLayout.EAST, slide, 128, SpringLayout.EAST, lblMesAno);
 		setLayout(springLayout);
 		
 		//JLabel lblMesAno = new JLabel("Mes - Ano");
@@ -51,7 +65,7 @@ public class Calendario extends JPanel {
 		
 		JButton btnProximo = new JButton("Próximo");
 		springLayout.putConstraint(SpringLayout.NORTH, btnProximo, 10, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnProximo, -6, SpringLayout.NORTH, slide);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnProximo, -268, SpringLayout.SOUTH, this);
 		btnProximo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(mes == 11) {
@@ -60,7 +74,13 @@ public class Calendario extends JPanel {
 				}else {
 					mes++;
 				}
-				slide.show(new TesteGridLayoutGui(mes, ano), Slide.AnimateType.TO_LEFT);
+				TesteGridLayoutGui novo = new TesteGridLayoutGui(mes, ano);
+				atual = novo;
+				slide.show(novo, Slide.AnimateType.TO_LEFT);
+				for(Component com : novo.getComponents()) {
+					BtnCalendario btn = (BtnCalendario) com;
+					System.out.println(btn.getDataExtenso());
+				}
 				mostrarMesAnoAtual();
 			}
 		});
@@ -78,7 +98,8 @@ public class Calendario extends JPanel {
 				}else {
 					mes--;
 				}
-				slide.show(new TesteGridLayoutGui(mes, ano), Slide.AnimateType.TO_RIGHT);
+				TesteGridLayoutGui novo = new TesteGridLayoutGui(mes, ano);
+				slide.show(novo, Slide.AnimateType.TO_RIGHT);
 				mostrarMesAnoAtual();
 			}
 		});
@@ -86,9 +107,14 @@ public class Calendario extends JPanel {
 		add(btnAnterior);
 		slide.show(new TesteGridLayoutGui(mes, ano), Slide.AnimateType.TO_RIGHT);
 		add(slide);
+		//mostrarEvento.setTexto();
 		
 		
 	}
+	
+	/*public void setarTexto(String texto) {
+		mostrarEvento.setTexto(texto);
+	}*/
 	
 	private void setMesAnoAtual() {
 		cal.setTime(new Date());
