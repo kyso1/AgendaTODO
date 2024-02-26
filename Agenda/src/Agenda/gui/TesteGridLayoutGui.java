@@ -5,11 +5,14 @@ import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.Calendar;
 
 import Agenda.utils.BtnCalendario;
 import java.awt.Color;
 import java.awt.Component;
+
+import Agenda.database.eventsDB;
 
 public class TesteGridLayoutGui extends JLayeredPane {
 
@@ -19,7 +22,7 @@ public class TesteGridLayoutGui extends JLayeredPane {
 	private int ano;
 	public String teste = "testando";
 	
-	public TesteGridLayoutGui(int mes, int ano) {
+	public TesteGridLayoutGui(int mes, int ano) throws ClassNotFoundException, SQLException {
 		setLayout(new GridLayout(7, 7, 0, 0));
 		
 		BtnCalendario btnCalDom = new BtnCalendario();
@@ -242,8 +245,10 @@ public class TesteGridLayoutGui extends JLayeredPane {
 		
 	}
 	
+	public eventsDB evento = new eventsDB();
+	
 	//função para fazer os botões do calendario ter os numeros dos dias
-	private void setData() {
+	private void setData() throws SQLException, ClassNotFoundException {
 		Calendar calendario = Calendar.getInstance();
 		calendario.set(Calendar.YEAR, ano);
 		System.out.println("Ano recebido: " + ano + "  ano no CALENDAR " + calendario.get(Calendar.YEAR));
@@ -261,6 +266,14 @@ public class TesteGridLayoutGui extends JLayeredPane {
 				//System.out.println("" + calendario.get(Calendar.DATE) + "/" + (calendario.get(Calendar.MONTH) + 1) + "/" + calendario.get(Calendar.YEAR));
 				btn.setDataExtenso("" + calendario.get(Calendar.DATE) + "/" + (calendario.get(Calendar.MONTH) + 1) + "/" + calendario.get(Calendar.YEAR));
 				btn.mesAtual(calendario.get(Calendar.MONTH) == mes);
+				
+				
+				
+				if(evento.getEventoTeste(btn.getDataExtenso())) {
+					System.out.println("Iguais: " + btn.getDataExtenso());
+					btn.setForeground(Color.BLUE);
+				}
+				
 				calendario.add(Calendar.DATE, 1); //acrescenta um dia
 			}
 		}

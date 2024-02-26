@@ -6,9 +6,12 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.Date;
 
 import Agenda.gui.Calendario;
+import Agenda.gui.MostrarEvento;
+import Agenda.database.*;
 
 public class BtnCalendario extends JButton{
 		
@@ -32,6 +35,21 @@ public class BtnCalendario extends JButton{
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("oi " + data);
 				System.out.println(data_extenso);
+				
+				MostrarEvento evento_mostrar = new MostrarEvento();
+				eventsDB evento;
+				try {
+					evento = new eventsDB();
+					evento_mostrar.setTexto(evento.getDesc(data_extenso));
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				evento_mostrar.setVisible(true);
+				
 			}
 			
 		});

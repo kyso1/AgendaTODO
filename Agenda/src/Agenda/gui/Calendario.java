@@ -12,6 +12,7 @@ import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import java.awt.FlowLayout;
@@ -42,7 +43,7 @@ public class Calendario extends JPanel {
 	public Slide slide = new Slide();
 	public TesteGridLayoutGui atual;
 	
-	public Calendario() {
+	public Calendario() throws ClassNotFoundException, SQLException {
 		setMesAnoAtual();
 		SpringLayout springLayout = new SpringLayout();
 		springLayout.putConstraint(SpringLayout.NORTH, slide, 6, SpringLayout.SOUTH, lblMesAno);
@@ -74,14 +75,24 @@ public class Calendario extends JPanel {
 				}else {
 					mes++;
 				}
-				TesteGridLayoutGui novo = new TesteGridLayoutGui(mes, ano);
-				atual = novo;
-				slide.show(novo, Slide.AnimateType.TO_LEFT);
-				for(Component com : novo.getComponents()) {
-					BtnCalendario btn = (BtnCalendario) com;
-					System.out.println(btn.getDataExtenso());
+				TesteGridLayoutGui novo;
+				try {
+					novo = new TesteGridLayoutGui(mes, ano);
+					atual = novo;
+					slide.show(novo, Slide.AnimateType.TO_LEFT);
+					/*for(Component com : novo.getComponents()) {
+						BtnCalendario btn = (BtnCalendario) com;
+						System.out.println(btn.getDataExtenso());
+					}*/
+					mostrarMesAnoAtual();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				mostrarMesAnoAtual();
+				
 			}
 		});
 		springLayout.putConstraint(SpringLayout.WEST, btnProximo, 6, SpringLayout.EAST, lblMesAno);
@@ -98,9 +109,19 @@ public class Calendario extends JPanel {
 				}else {
 					mes--;
 				}
-				TesteGridLayoutGui novo = new TesteGridLayoutGui(mes, ano);
-				slide.show(novo, Slide.AnimateType.TO_RIGHT);
-				mostrarMesAnoAtual();
+				TesteGridLayoutGui novo;
+				try {
+					novo = new TesteGridLayoutGui(mes, ano);
+					slide.show(novo, Slide.AnimateType.TO_RIGHT);
+					mostrarMesAnoAtual();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		springLayout.putConstraint(SpringLayout.EAST, btnAnterior, -6, SpringLayout.WEST, lblMesAno);

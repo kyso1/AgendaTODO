@@ -144,8 +144,8 @@ public class CadastroEventoPanel extends JPanel {
 				eventsDB eventsDB;
 				try {
 					eventsDB = new eventsDB();
-					System.out.println(eventsDB.getEvento(tfDataEvento.getText()) + "\n");
-					System.out.println(tfDescEvento.getText() + "\n");
+					//System.out.println(eventsDB.getEvento(tfDataEvento.getText()) + "\n");
+					//System.out.println(tfDescEvento.getText() + "\n");
 					//eventsDB.inserirEvento(data[0],data[1],data[2],tfDescEvento.getText());
 					if(eventsDB.getEvento(tfDataEvento.getText()) == null) {
 						System.out.println("Evento cadastrado");
